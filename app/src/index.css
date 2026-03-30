@@ -55,7 +55,7 @@
   max-width: none;
   margin: 0;
   text-align: left;
-  min-height: 100svh;
+  max-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

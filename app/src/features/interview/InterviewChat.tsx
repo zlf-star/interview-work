@@ -61,61 +61,63 @@ function renderParsedMessage(message: ChatMessage) {
         <div className="msgMeta">
           本轮评分：{out.evaluation.total_score} 分（题型：{out.question_type}）
         </div>
-        <div className="listBlock">
-          <div className="listTitle">评价概述</div>
-          {out.evaluation.question_restate ? (
+        <div className="msgContentScrollable">
+          <div className="listBlock">
+            <div className="listTitle">评价概述</div>
+            {out.evaluation.question_restate ? (
+              <div className="listItem">
+                <b>题意：</b>
+                {out.evaluation.question_restate}
+              </div>
+            ) : null}
             <div className="listItem">
-              <b>题意：</b>
-              {out.evaluation.question_restate}
-            </div>
-          ) : null}
-          <div className="listItem">
-            <b>要点：</b>
-            <div style={{ marginTop: 6 }}>
-              <div className="listTitle" style={{ marginTop: 8 }}>
-                优点
-              </div>
-              {out.evaluation.strengths.length ? (
-                <div style={{ whiteSpace: 'pre-wrap' }}>
-                  {out.evaluation.strengths.map((s) => `- ${s}`).join('\n')}
+              <b>要点：</b>
+              <div style={{ marginTop: 6 }}>
+                <div className="listTitle" style={{ marginTop: 8 }}>
+                  优点
                 </div>
-              ) : (
-                <div className="hint">无</div>
-              )}
-              <div className="listTitle" style={{ marginTop: 8 }}>
-                不足
-              </div>
-              {out.evaluation.weaknesses.length ? (
-                <div style={{ whiteSpace: 'pre-wrap' }}>
-                  {out.evaluation.weaknesses.map((s) => `- ${s}`).join('\n')}
+                {out.evaluation.strengths.length ? (
+                  <div style={{ whiteSpace: 'pre-wrap' }}>
+                    {out.evaluation.strengths.map((s) => `- ${s}`).join('\n')}
+                  </div>
+                ) : (
+                  <div className="hint">无</div>
+                )}
+                <div className="listTitle" style={{ marginTop: 8 }}>
+                  不足
                 </div>
-              ) : (
-                <div className="hint">无</div>
-              )}
-              <div className="listTitle" style={{ marginTop: 8 }}>
-                改进建议
-              </div>
-              {out.evaluation.improvements.length ? (
-                <div style={{ whiteSpace: 'pre-wrap' }}>
-                  {out.evaluation.improvements.map((s) => `- ${s}`).join('\n')}
+                {out.evaluation.weaknesses.length ? (
+                  <div style={{ whiteSpace: 'pre-wrap' }}>
+                    {out.evaluation.weaknesses.map((s) => `- ${s}`).join('\n')}
+                  </div>
+                ) : (
+                  <div className="hint">无</div>
+                )}
+                <div className="listTitle" style={{ marginTop: 8 }}>
+                  改进建议
                 </div>
-              ) : (
-                <div className="hint">无</div>
-              )}
+                {out.evaluation.improvements.length ? (
+                  <div style={{ whiteSpace: 'pre-wrap' }}>
+                    {out.evaluation.improvements.map((s) => `- ${s}`).join('\n')}
+                  </div>
+                ) : (
+                  <div className="hint">无</div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <ScoreGrid evaluation={out.evaluation} />
+          <ScoreGrid evaluation={out.evaluation} />
 
-        <div style={{ marginTop: 12 }}>
-          <div className="listTitle">下一题</div>
-          <div className="listItem">
-            <div className="msgMeta" style={{ marginBottom: 0 }}>
-              题型：{out.next_question.question_type}
-            </div>
-            <div style={{ whiteSpace: 'pre-wrap', marginTop: 6 }}>
-              {out.next_question.question}
+          <div style={{ marginTop: 12 }}>
+            <div className="listTitle">下一题</div>
+            <div className="listItem">
+              <div className="msgMeta" style={{ marginBottom: 0 }}>
+                题型：{out.next_question.question_type}
+              </div>
+              <div style={{ whiteSpace: 'pre-wrap', marginTop: 6 }}>
+                {out.next_question.question}
+              </div>
             </div>
           </div>
         </div>
